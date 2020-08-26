@@ -4,8 +4,7 @@ import {
   StyleSheet,
   StatusBar,
   View,
-  AppState,
-  Button
+  AppState
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import TitleView from './components/titleView';
