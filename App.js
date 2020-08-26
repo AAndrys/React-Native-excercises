@@ -10,6 +10,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import TitleView from './components/titleView';
 import TextView from './components/textView';
+import ResetButton from './components/resetButton';
 
 const App = () => {
 
@@ -70,9 +71,7 @@ const App = () => {
         <View style={styles.mainView}>
           <TitleView />
           <TextView counter={counter} />
-          <View>
-            <Button title="Reset async storage" onPress={resetAsyncStorage} />
-          </View>
+          <ResetButton reset={resetAsyncStorage} />
         </View>
       </SafeAreaView>
     </>
