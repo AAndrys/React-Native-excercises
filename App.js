@@ -11,21 +11,25 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const App = () => {
 
-  // const appRef = useRef(AppState.currentState);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
+    getValueFromStorage();
+  }, [])
+
+  useEffect(() => {
     AppState.addEventListener("change", _counterEvent);
-    // getValueFromStorage();
 
     return () => {
       AppState.removeEventListener("change", _counterEvent);
     };
   }, [counter]);
 
-  const _counterEvent = async (nextAppState) => {
+  const _counterEvent = (nextAppState) => {
     if(nextAppState === "active") {
       setCounter(counter + 1);
+    } else {
+      saveValueToStorage();
     }
   };
   const getValueFromStorage =  async () => {
