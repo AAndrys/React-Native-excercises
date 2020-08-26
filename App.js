@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,7 +10,6 @@ import {
 
 const App = () => {
 
-  const appState = useRef(AppState.currentState);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
@@ -19,25 +18,29 @@ const App = () => {
     return () => {
       AppState.removeEventListener("change", _counterEvent);
     };
-  }, []);
+  }, [counter]);
 
   const _counterEvent = (nextAppState) => {
     if(nextAppState === "active") {
-      // console.log(AppState);
       setCounter(counter + 1);
-      console.log(appState.current)
     }
-    // console.log(nextAppState)
   };
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <View>
-          <Text>
-            {counter}
-          </Text>
+        <View style={styles.mainView}>
+          <View style={styles.mainViewTitle}> 
+            <Text style={{ fontSize: 25 }}>
+              Active application counter
+            </Text>
+          </View>
+          <View style={styles.mainViewText} >
+            <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'darkblue' }}>
+              {counter}
+            </Text>
+          </View>
         </View>
       </SafeAreaView>
     </>
@@ -48,7 +51,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
+  mainView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  mainViewTitle: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mainViewText: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default App;
