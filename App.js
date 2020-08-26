@@ -6,6 +6,7 @@ import {
   View,
   Text,
   AppState,
+  Button
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -49,6 +50,14 @@ const App = () => {
       console.log(e);
     }
   };
+  const resetAsyncStorage = async () => {
+    setCounter(0);
+    try {
+      await AsyncStorage.setItem('@storage_activeValue', JSON.stringify(0));
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <>
@@ -64,6 +73,9 @@ const App = () => {
             <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'darkblue' }}>
               {counter}
             </Text>
+          </View>
+          <View>
+            <Button title="Reset async storage" onPress={resetAsyncStorage} />
           </View>
         </View>
       </SafeAreaView>
