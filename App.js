@@ -4,11 +4,12 @@ import {
   StyleSheet,
   StatusBar,
   View,
-  Text,
   AppState,
   Button
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import TitleView from './components/titleView';
+import TextView from './components/textView';
 
 const App = () => {
 
@@ -67,16 +68,8 @@ const App = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <View style={styles.mainView}>
-          <View style={styles.mainViewTitle}> 
-            <Text style={{ fontSize: 25 }}>
-              Active application counter
-            </Text>
-          </View>
-          <View style={styles.mainViewText} >
-            <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'darkblue' }}>
-              {counter}
-            </Text>
-          </View>
+          <TitleView />
+          <TextView counter={counter} />
           <View>
             <Button title="Reset async storage" onPress={resetAsyncStorage} />
           </View>
@@ -94,16 +87,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  mainViewTitle: {
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  mainViewText: {
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
