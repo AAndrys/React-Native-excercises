@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     getValueFromStorage();
-  }, [])
+  }, []);
 
   useEffect(() => {
     AppState.addEventListener("change", _counterEvent);
@@ -33,6 +33,7 @@ const App = () => {
       saveValueToStorage();
     }
   };
+
   const getValueFromStorage =  async () => {
     try {
       const storageCounterValue = await AsyncStorage.getItem('@storage_activeValue');
@@ -42,6 +43,7 @@ const App = () => {
       console.log(err);
     }
   };
+
   const saveValueToStorage =  async () => {
     try {
       await AsyncStorage.setItem('@storage_activeValue', JSON.stringify(counter));
@@ -50,6 +52,7 @@ const App = () => {
       console.log(e);
     }
   };
+
   const resetAsyncStorage = async () => {
     setCounter(0);
     try {
@@ -57,7 +60,7 @@ const App = () => {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <>
