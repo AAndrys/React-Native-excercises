@@ -7,22 +7,42 @@ import {
   Text,
   AppState,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const App = () => {
 
+  // const appRef = useRef(AppState.currentState);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     AppState.addEventListener("change", _counterEvent);
+    // getValueFromStorage();
 
     return () => {
       AppState.removeEventListener("change", _counterEvent);
     };
   }, [counter]);
 
-  const _counterEvent = (nextAppState) => {
+  const _counterEvent = async (nextAppState) => {
     if(nextAppState === "active") {
       setCounter(counter + 1);
+    }
+  };
+  const getValueFromStorage =  async () => {
+    try {
+      const storageCounterValue = await AsyncStorage.getItem('@storage_activeValue');
+      setCounter(JSON.parse(storageCounterValue));
+      console.log('GET ' + counter);
+    } catch(err) {
+      console.log(err);
+    }
+  };
+  const saveValueToStorage =  async () => {
+    try {
+      await AsyncStorage.setItem('@storage_activeValue', JSON.stringify(counter));
+      console.log(await AsyncStorage.getItem('@storage_activeValue'));
+    } catch (e) {
+      console.log(e);
     }
   };
 
