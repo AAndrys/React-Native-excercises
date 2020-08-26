@@ -40,7 +40,7 @@ const App = () => {
   const getValueFromStorage =  async () => {
     try {
       const storageCounterValue = await AsyncStorage.getItem('@storage_activeValue');
-      setCounter(JSON.parse(storageCounterValue));
+      setCounter(JSON.parse(storageCounterValue) + 1);
       console.log('GET ' + counter);
     } catch(err) {
       console.log(err);
