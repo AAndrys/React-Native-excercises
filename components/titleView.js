@@ -10,7 +10,7 @@ const TitleView = () => {
     return (
         <View style={styles.mainViewTitle}>
             <Text style={{ fontSize: 25 }}>
-            Active application counter
+                Active application counter
             </Text>
         </View>
     );

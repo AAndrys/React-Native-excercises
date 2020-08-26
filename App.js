@@ -7,6 +7,8 @@ import {
   AppState
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+
+//Components
 import TitleView from './components/titleView';
 import TextView from './components/textView';
 import ResetButton from './components/resetButton';
